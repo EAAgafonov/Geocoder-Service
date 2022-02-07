@@ -1,0 +1,169 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+
+
+body {
+    background-color: #e3e3e3;
+    margin: 20px;
+}
+.tblh {
+    height: 50px;
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.info-head {
+    display: flex;
+    margin-bottom: 20px;
+
+}
+.info-left {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    box-shadow: 1px 1px 6px 5px rgb(142 142 173 / 20%);
+    padding: 10px;
+    height: 550px;
+    overflow-y:scroll
+}
+.info-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.info-l-in {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    font-size: 14px;
+}
+.inf-l-out {
+    flex-direction: row;
+    display: flex;
+    font-size: 14px;
+}
+p {
+    margin: 0;
+}
+.p-2 {
+    flex: .5;
+    border-right: 1px solid #adaaaa;
+}
+.p-1 {
+    flex: 0.25;
+}
+.pAddress {
+    flex: 2;
+}
+
+.info-foot {
+    display: flex;
+    flex-direction: row;
+}
+.info-foot-in {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: unset;
+}
+h5 {
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+.btn {
+    cursor: pointer;
+}
+.btn:focus, .input-field button:focus {
+    outline: none;
+    box-shadow: none!important;
+}
+.spinner-border {
+    margin-top: 25%;
+}
+.info-foot-in p {
+    text-indent: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.input-field {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.input-field textarea {
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid rgb(52, 58, 64);
+    text-indent: 5px;
+    
+}
+#menu1 {
+    display: none;
+}
+#menu2 {
+    display: none;
+}
+.tab-content>.active {
+    display: block!important;
+}
+.btn .btn-outline-dark:focus {
+    outline: none;
+    box-shadow: none!important;
+    
+}
+.btn-outline-dark {
+    border-radius: 8px;
+}
+.navF {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+.navFin {
+    margin-right: 10px;
+}
+.tab-content {
+    height: 200px;
+}
+.tab-content input {
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    width: 160px;
+    float: right;
+}
+.tab-content label {
+    color: #ff79c6;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    font-family: monaco, Consolas, Menlo, Courier, monospace;
+    width: 290px;
+}
+.tap-pane button {
+    float: right;
+}
+
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42a948;
+}
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+}
+.alert-danger {
+    padding: 2px 2px;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+}
+.p5 {
+    flex: 1;
+}
+.info-trace {
+    min-height: 250px;
+}

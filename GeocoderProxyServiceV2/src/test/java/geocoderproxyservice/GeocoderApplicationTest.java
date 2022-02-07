@@ -1,0 +1,5 @@
+package geocoderproxyservice;
+
+class GeocoderApplicationTest {
+
+}

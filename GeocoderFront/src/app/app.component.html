@@ -1,0 +1,155 @@
+<!-- <div>{{ appState$ | async | json }}</div> -->
+
+<div class=" container">
+    <div class="info-head">
+        <h4>Geocoder Service</h4>
+    </div>
+    <ng-container *ngIf="(appState$ | async) as appState" [ngSwitch]="appState.dataState">
+        <div class="info">
+            <div class="info-left">
+                <div class="info-l-in">
+                    <p class="p-2 p-1">Id</p>
+                    <p class="p-2 pAddress">Address</p>
+                    <p class="p-2">Latitude</p>
+                    <p class="p-2">Longitude</p>
+                </div>
+
+                <ng-container>
+                    <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+                        <div class="col-md-12 single-note-item text-center">
+                            <div class="spinner-border text-info" role="status"></div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+
+                        <div class="inf-l-out" *ngFor="let dataDB of appState.appData.data.dataDBs; let i = index">
+                            <div class="p-2 p-1"> {{ dataDB.id}} </div>
+                            <div class="p-2 pAddress"> {{ dataDB.address}} </div>
+                            <div class="p-2"> {{ dataDB.latitude}} </div>
+                            <div class="p-2"> {{ dataDB.longitude}} </div>
+                        </div>
+
+                    </ng-container>
+                    <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+                        <div class="alert-danger">
+                            {{ appState.error }}
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <div class="info-right">
+                <button (click)="geocoderV2(dataJson1)" [(ngModel)]="dataJson1" name="dataJson1" ngDefaultControl
+                    class="btn btn-outline-dark">Sample 1</button>
+                <button (click)="geocoderV2(dataJson2)" [(ngModel)]="dataJson2" name="dataJson2" ngDefaultControl
+                    class="btn btn-outline-dark">Sample 2</button>
+                <button (click)="geocoderV2(dataJson3)" [(ngModel)]="dataJson3" name="dataJson3" ngDefaultControl
+                    class="btn btn-outline-dark">Sample 3</button>
+
+                <div class="input-field">
+                    <div class="nav navF">
+                        <a href="#menu1" class="navFin nav-link active btn btn-outline-dark"
+                            data-toggle="tab">Coordinates</a>
+
+                        <a href="#menu2" class="nav-link btn btn-outline-dark" data-toggle="tab">Address</a>
+                    </div>
+
+                    <div class="tab-content" id="myTabContent">
+                        <div id="menu1" class="tap-pane fade active show">
+                            <form #userForm1="ngForm" (ngSubmit)="sendCoordinates(box1.value, box2.value)">
+                                {{'{'}} <br>
+
+                                <label for="latitude">"latitude" : <input required #latitude="ngModel" #box1
+                                        [(ngModel)]="tstData.latitude" type="number" name="latitude"
+                                        placeholder="55.3785"></label>
+                                <div class="alert alert-danger" [hidden]="latitude.valid || latitude.pristine">
+                                    Поле
+                                    обязательно для заполнения</div>
+
+                                <label for="longitude">"longitude" : <input required #longitude="ngModel" #box2
+                                        [(ngModel)]="tstData.longitude" type="number" name="longitude"
+                                        placeholder="37.3946"></label>
+                                <div class="alert alert-danger" [hidden]="longitude.valid || longitude.pristine">Поле
+                                    обязательно для заполнения</div>
+
+                                <br> {{'}'}} <br>
+
+                                <button type="submit" [disabled]="!userForm1.form.valid"
+                                    class="btn btn-outline-dark">Отправить</button>
+                            </form>
+                        </div>
+                        <div id="menu2" class="tap-pane fade">
+                            <form #userForm2="ngForm" (ngSubmit)="sendAddress(box3.value, box4.value, box5.value)">
+                                {{'{'}} <br>
+
+                                <label for="city">"city" : <input required #city="ngModel" [(ngModel)]="tstData.city"
+                                        #box3 type="text" name="city" placeholder="Paris"></label>
+                                <div class="alert alert-danger" [hidden]="city.valid || city.pristine">Поле
+                                    обязательно для заполнения</div>
+
+                                <label for="street">"street" : <input required #street="ngModel"
+                                        [(ngModel)]="tstData.street" #box4 type="text" name="street"
+                                        placeholder="Rue de Charonne"></label>
+                                <div class="alert alert-danger" [hidden]="street.valid || street.pristine">Поле
+                                    обязательно для заполнения</div>
+
+                                <label for="house">"house" : <input required #house="ngModel"
+                                        [(ngModel)]="tstData.house" #box5 type="number" name="house"
+                                        placeholder="97"></label>
+                                <div class="alert alert-danger" [hidden]="house.valid || house.pristine">Поле
+                                    обязательно для заполнения</div>
+                                <br> {{'}'}} <br>
+
+                                <button type="submit" [disabled]="!userForm2.form.valid"
+                                    class="btn btn-outline-dark">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-trace">
+            <h5>Http Traces</h5>
+            <div class="info-l-in">
+                <p class="p5">TimeStamp</p>
+                <p class="p5">Method</p>
+                <p class="p5">TimeTaken</p>
+                <p class="p5">Status</p>
+                <p class="p5">URI</p>
+            </div>
+
+            <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+                <div class="inf-l-out" *ngFor="let trace of appState.appData.traceData.traces;">
+                    <div class="p5">{{ trace.timestamp }}</div>
+                    <div class="p5">{{ trace.method }}</div>
+                    <div class="p5">{{ trace.timeTaken }}</div>
+                    <div class="p5">{{ trace.status }}</div>
+                    <div class="p5">{{ trace.uri }}</div>
+                </div>
+            </ng-container>
+
+        </div>
+    </ng-container>
+    <h5>Sample data</h5>
+    <div class="info-foot">
+        <div class="info-foot-in">
+            <p>Sample 1</p>
+            <ng-container *ngFor="let dt of dataJson1">
+                <pre class="info-foot-in">{{dt | json}}</pre>
+            </ng-container>
+        </div>
+        <div class="info-foot-in">
+            <p>Sample 2</p>
+            <ng-container *ngFor="let dt of dataJson2">
+                <pre class="info-foot-in">{{dt | json}}</pre>
+            </ng-container>
+        </div>
+        <div class="info-foot-in">
+            <p>Sample 3</p>
+            <ng-container *ngFor="let dt of dataJson3">
+                <pre class="info-foot-in">{{dt | json}}</pre>
+            </ng-container>
+        </div>
+    </div>
+</div>

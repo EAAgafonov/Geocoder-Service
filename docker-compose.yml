@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: "postgres:14.1-alpine"
+    container_name: db
+    environment:
+      - POSTGRES_DB=GeocoderDB
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user
+  geocoderproxyservice:
+    build: ./geocoderproxyservice
+    container_name: geocoderproxyservice
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/GeocoderDB
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=user
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  geocoderfront:
+    build: ./geocoderfront
+    container_name: geocoderfront
+    ports:
+      - 4200:80
+    depends_on:
+      - geocoderproxyservice
