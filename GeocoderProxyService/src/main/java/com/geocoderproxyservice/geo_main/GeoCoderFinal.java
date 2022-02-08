@@ -21,7 +21,7 @@ public class GeoCoderFinal implements GeoCoder  {
     private final StringBuilder query = new StringBuilder();
     private final GeocoderDataRepository geocoderRepository;
 
-    private final String apiKey = "871f819e-b3ff-4f50-80c2-8052601f93d5";
+    private final String apiKey = "YOUR_API_KEY_HERE";
     private final String initialUrl = "https://geocode-maps.yandex.ru/1.x/?format=json&lang=ru_RU&apikey=" + apiKey;
 
     //retrieves data fromJSONArray
