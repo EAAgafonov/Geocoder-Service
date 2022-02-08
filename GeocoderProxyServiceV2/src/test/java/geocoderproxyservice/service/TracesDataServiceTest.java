@@ -26,7 +26,7 @@ class TracesDataServiceTest {
     @Test
     void getTraces() {
         underTest.getTraces();
-        verify(tracesDataRepository).findAll();
+        verify(tracesDataRepository).findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @Test
